@@ -87,11 +87,11 @@ Data flow is illustrated in the following diagram:
 flowchart LR
 
 Sender 
---> UART_HAL
---> Linux_UART_Driver
+--> UART_HAL_S
+--> Linux_UART_Driver_S
 --> UART_Hardware
---> Linux_UART_Driver
---> UART_HAL
+--> Linux_UART_Driver_R
+--> UART_HAL_R
 --> Receiver
 ```
 ---
