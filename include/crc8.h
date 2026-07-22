@@ -18,7 +18,7 @@ extern "C" {
  * 
  * @return calculated crc-8 value
  */
-uint8_t crc8_calulate(const uint8_t *data, size_t length);
+uint8_t crc8_calculate(const uint8_t *data, size_t length);
 
 /**
  * @brief verifies a CRC-8 checksum

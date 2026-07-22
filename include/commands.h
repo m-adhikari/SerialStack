@@ -1,7 +1,6 @@
-#ifndef CRC8_H
-#define CRC8_H
+#ifndef COMMANDS_H
+#define COMMANDS_H
 
-#include <stddef.h>
 #include <stdint.h>
 
 #ifdef __cplusplus
@@ -9,33 +8,45 @@ extern "C" {
 #endif
 
 /**
- * @brief calculates the SerialStack CRC-8 checksum
- * 
- * CRC is calcualted excluding SOF CRC8 and EOF fields
- *
- * @param data pointer to input data.
- * @param length number of bytes.
- * 
- * @return calculated crc-8 value
+ * @brief SerialStack commands
  */
-uint8_t crc8_calulate(const uint8_t *data, size_t length);
+typedef enum
+{
+    SS_CMD_RESERVED          = 0x00,
+
+    SS_CMD_PING              = 0x01,
+    SS_CMD_PONG              = 0x02,
+    SS_CMD_ACK               = 0x03,
+    SS_CMD_NACK              = 0x04,
+    SS_CMD_HEARTBEAT         = 0x05,
+    SS_CMD_STATUS_REQUEST    = 0x06,
+    SS_CMD_STATUS_RESPONSE   = 0x07,
+
+    SS_CMD_EXTENDED          = 0xFF
+
+} ss_command_t;
 
 /**
- * @brief verifies a CRC-8 checksum
+ * @brief Determines whether a command identifier is valid.
  * 
- * @param data pointer to input data
- * @param length number of bytes
- * @param expected expected CRC value
+ * @param command Command identifier
  *
- * @return 1 if CRC matches
+ * @return 1 if valid
  * @return 0 otherwise 
  */
-int crc8_verify(const uint8_t *data,
-                size_t length,
-                uint8_t expected);
+int command_is_valid(uint8_t command);
+
+/**
+ * @brief Returns the textual name of a command.
+ * 
+ * @param command Command identifier
+ *
+ * @return constant string representing the command.
+ */
+const char *commnad_name (uint8_t command);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* CRC8_H */
+#endif /* COMMANDS_H */

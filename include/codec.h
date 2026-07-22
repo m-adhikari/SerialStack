@@ -18,7 +18,6 @@ extern "C" {
 #define SS_FRAME_SOF            0xAA
 #define SS_FRAME_EOF            0x55
 
-#define SS_MAX_PAYLOAD_SIZE     64
 #define SS_FRAME_SIZE           73
 
 /**
